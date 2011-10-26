@@ -100,7 +100,7 @@ def get_lint(options):
     return lint
 
 
-def main(jsfile, options):
+def process(jsfile, options):
     lint = get_lint(options)
     command = [options.node, lint.name, jsfile.name]
     output = execute_command(command)
@@ -127,10 +127,10 @@ def check_JSLint(code_string):
     tmpfile = NamedTemporaryFile()
     tmpfile.write(code_string)
     tmpfile.file.flush()
-    return main(tmpfile, parser.get_default_values())
+    return process(tmpfile, parser.get_default_values())
 
 
-if __name__ == "__main__":
+def main():
     (options, args) = parser.parse_args()
     if len(args) < 1:
         sys.stderr.write('One JavaScript file must be specified\n')
@@ -138,8 +138,12 @@ if __name__ == "__main__":
                          + '\n')
         sys.exit(False)
     filename = args[0]
-    errors = main(open(filename, "r"), options)
+    errors = process(open(filename, "r"), options)
     if len(errors) > 0:
         print "\n".join(reformat(errors, pattern, filename))
         sys.exit(False)
     sys.exit(True)
+
+
+if __name__ == "__main__":
+    main()
