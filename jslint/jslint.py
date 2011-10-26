@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# Copyright (C) 2011  Alejandro Blanco <ablanco@yaco.es>
+
 """
 wrapper for JSLint
 """
