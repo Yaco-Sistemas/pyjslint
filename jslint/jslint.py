@@ -60,7 +60,7 @@ for (i = 2; i < process.argv.length; i++) {
     }
 }
 """
-usage = "Usage: %prog [options] jsfile [jslint_options]"
+usage = "Usage: %prog [options] jsfile"
 parser = OptionParser(usage)
 parser.add_option('-u', '--upgrade', dest='force', help='Upgrade JSLint',
                   action='store_true', default=False)
