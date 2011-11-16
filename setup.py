@@ -22,6 +22,6 @@ setup(
     zip_safe=False,
     entry_points={
         'console_scripts': [
-            'pyjslint = jslint.jslint:main',
+            'pyjslint = jslint:main',
             ]},
 )
