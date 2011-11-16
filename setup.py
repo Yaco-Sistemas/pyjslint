@@ -3,8 +3,6 @@
 import os
 from setuptools import setup
 
-from jslint import version
-
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
@@ -12,7 +10,7 @@ def read(*rnames):
 
 setup(
     name="pyjslint",
-    version=version,
+    version='0.3',
     author="Alejandro Blanco",
     author_email="ablanco@yaco.es",
     description="JSLint wrapper",
