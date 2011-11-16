@@ -110,8 +110,7 @@ def main():
     (options, args) = parser.parse_args()
     if len(args) < 1:
         sys.stderr.write('One JavaScript file must be specified\n')
-        sys.stderr.write(usage.replace('%prog', os.path.split(sys.argv[0])[1])
-                         + '\n')
+        parser.print_usage()
         sys.exit(False)
     filename = args[0]
     errors = process(open(filename, "r"), options)
