@@ -70,7 +70,7 @@ If you want to use in your Python code, maybe in a control version system hook
 or something, just make it sure it is in the Python path and do something like
 this::
 
-    from jslint import jslint
+    import jslint
 
     # The method requires the text content of the file to check
     jslint.check_JSLint(file.read())
