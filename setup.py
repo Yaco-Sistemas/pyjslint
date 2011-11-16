@@ -17,7 +17,7 @@ setup(
     long_description=read('README.rst'),
     license="BSD-3",
     keywords="jslint javascript lint hook qa",
-    packages=['jslint'],
+    modules=['jslint'],
     url='https://github.com/Yaco-Sistemas/pyjslint/',
     zip_safe=False,
     entry_points={
