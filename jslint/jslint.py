@@ -17,17 +17,8 @@ from tempfile import NamedTemporaryFile
 
 pattern = r"Lint at line (\d+) character (\d+): (.*)"
 default_jslint_options = r"""
-strict: true,
-white: true,
-onevar: true,
-undef: true,
-newcap: true,
-nomem: true,
-regexp: true,
-plusplus: true,
-bitwise: true,
+vars: true,
 maxerr: 100,
-indent: 4,
 predef: ['document', 'window']
 """
 node_script = r"""
