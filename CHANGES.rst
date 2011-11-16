@@ -1,9 +1,9 @@
 Changes
 =======
 
-0.3.1 (unreleased)
-------------------
--...
+0.3.1 2011-11-16
+----------------
+- Rename the module to avoid collisions with the jslint python wrapper project
 
 0.3 2011-11-16
 --------------

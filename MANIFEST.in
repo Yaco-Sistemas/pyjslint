@@ -1,4 +1,4 @@
-recursive-include jslint *.py
+include *.py
 include *.rst
 include *.sample
 include COPYING
