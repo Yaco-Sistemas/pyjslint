@@ -10,7 +10,7 @@ def read(*rnames):
 
 setup(
     name="pyjslint",
-    version='0.3',
+    version='0.3.1dev',
     author="Alejandro Blanco",
     author_email="ablanco@yaco.es",
     description="JSLint wrapper",
