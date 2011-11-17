@@ -10,7 +10,7 @@ def read(*rnames):
 
 setup(
     name="pyjslint",
-    version='0.3.2dev',
+    version='0.3.2',
     author="Alejandro Blanco",
     author_email="ablanco@yaco.es",
     description="JSLint wrapper",
@@ -26,11 +26,11 @@ setup(
                    "Programming Language :: Python",
                    "Topic :: Software Development :: Quality Assurance"],
     keywords="jslint javascript lint hook qa",
-    modules=['pyjslint'],
+    py_modules=['pyjslint'],
     url='https://github.com/Yaco-Sistemas/pyjslint/',
     zip_safe=False,
     entry_points={
         'console_scripts': [
-            'pyjslint = jslint:main',
+            'pyjslint = pyjslint:main',
             ]},
 )
