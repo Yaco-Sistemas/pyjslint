@@ -5,6 +5,12 @@ Changes
 ---------------------
 - ...
 
+0.3.3 2011-12-01
+----------------
+- Use status code to detect if the file was valid instead of parsing the
+  output from the node script
+- Fix bug in the hook interface
+
 0.3.2 2011-11-17
 ----------------
 - Fix bug in setup.py, wrong directive and wrong entry point

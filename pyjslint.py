@@ -25,28 +25,29 @@ var JSLINT = require("%s").JSLINT,
     readFileSync = require("fs").readFileSync,
     error = null, i = 0, j = 0, src = null;
 
-for (i = 2; i < process.argv.length; i++) {
-    print("Analyzing file " + process.argv[i] + "\n");
-    src = readFileSync(process.argv[i], "utf8");
-    JSLINT(src, {%s});
+print("Analyzing file " + process.argv[2] + "\n");
+src = readFileSync(process.argv[2], "utf8");
+JSLINT(src, {%s});
 
-    for (j = 0; j < JSLINT.errors.length; j++ ) {
-        error = JSLINT.errors[j];
-        if (error !== null) {
-            if (typeof error.evidence !== "undefined") {
-                print("\n" + error.evidence + "\n");
-            } else {
-                print("\n");
-            }
-            print("Lint at line " + error.line + " character " +
-                  error.character + ": " + error.reason);
+for (j = 0; j < JSLINT.errors.length; j++ ) {
+    error = JSLINT.errors[j];
+    if (error !== null) {
+        if (typeof error.evidence !== "undefined") {
+            print("\n" + error.evidence + "\n");
+        } else {
+            print("\n");
         }
+        print("Lint at line " + error.line + " character " +
+                error.character + ": " + error.reason);
     }
+}
 
-    if (JSLINT.errors.length > 0) {
-        print("\n" + JSLINT.errors.length + " Error(s) found.\n");
-        break;
-    }
+if (JSLINT.errors.length > 0) {
+    print("\n" + JSLINT.errors.length + " Error(s) found.\n");
+    process.exit(1);
+} else {
+    print("\nNo errors found.\n");
+    process.exit(0);
 }
 """
 usage = "Usage: %prog [options] jsfile"
@@ -64,7 +65,7 @@ parser.add_option('-n', '--node', dest='node',
 def execute_command(proc):
     p = subprocess.Popen(proc, stdout=subprocess.PIPE)
     out, err = p.communicate()
-    return out
+    return out, p.returncode
 
 
 def get_lint(options):
@@ -92,10 +93,10 @@ def get_lint(options):
 def process(jsfile, options):
     lint = get_lint(options)
     command = [options.node, lint.name, jsfile.name]
-    output = execute_command(command)
+    output, valid = execute_command(command)
     jsfile.close()
     lint.close()
-    return [line for line in output.split("\n") if line]
+    return [line for line in output.split("\n") if line], valid == 0
 
 
 # Hooks entry point
@@ -103,7 +104,11 @@ def check_JSLint(code_string):
     tmpfile = NamedTemporaryFile()
     tmpfile.write(code_string)
     tmpfile.file.flush()
-    return process(tmpfile, parser.get_default_values())
+    output, valid = process(tmpfile, parser.get_default_values())
+    if valid:
+        return []
+    else:
+        return output
 
 
 def main():
@@ -113,11 +118,9 @@ def main():
         parser.print_usage()
         sys.exit(False)
     filename = args[0]
-    errors = process(open(filename, "r"), options)
-    if len(errors) > 0:
-        print "\n".join(errors)
-        sys.exit(False)
-    sys.exit(True)
+    output, valid = process(open(filename, "r"), options)
+    print "\n".join(output)
+    sys.exit(valid)
 
 
 if __name__ == "__main__":
