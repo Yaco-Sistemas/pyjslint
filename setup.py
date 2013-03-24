@@ -23,8 +23,8 @@ setup(
                  "License :: OSI Approved :: BSD License",
                  "Natural Language :: English",
                  "Programming Language :: JavaScript",
-                 "Programming Language :: Python :: 2"
-                 "Programming Language :: Python :: 3"
+                 "Programming Language :: Python :: 2",
+                 "Programming Language :: Python :: 3",
                  "Topic :: Software Development :: Quality Assurance"],
     keywords="jslint javascript lint hook qa",
     py_modules=['pyjslint'],
