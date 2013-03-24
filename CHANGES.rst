@@ -1,13 +1,10 @@
 Changes
 =======
 
-0.3.5dev (unreleased)
----------------------
-- ...
-
 0.3.4 2013-03-23
 ----------------
 - Compatible with Python 3
+- Remove some confusing default options for JSLint
 
 0.3.3 2011-12-01
 ----------------

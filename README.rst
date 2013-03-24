@@ -77,8 +77,8 @@ this::
 
 It will return a list with the errors found by JSLint.
 
-There is no options yet if you invoke it this way. Maybe someday, contributions
-are welcome ;)
+There is no way to specify options yet if you invoke it this way. Maybe
+someday, contributions are welcome ;)
 
 Acknowledges
 ============

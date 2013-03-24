@@ -15,12 +15,10 @@ from tempfile import NamedTemporaryFile
 try:
     from urllib2 import urlopen  # Python 2
 except ImportError:
-    from urllib.request import urlopen # Python 3
+    from urllib.request import urlopen  # Python 3
 
 default_jslint_options = r"""
-vars: true,
-maxerr: 100,
-predef: ['document', 'window']
+maxerr: 100
 """
 node_script = r"""
 var JSLINT = require("%s").JSLINT,
@@ -77,7 +75,7 @@ def get_lint(options):
     if not os.path.exists(jslint) or options.force:
         # download jslint from github
         response = urlopen('https://raw.github.com/douglascrockford/'
-                                   'JSLint/master/jslint.js')
+                           'JSLint/master/jslint.js')
         if not os.path.exists(os.path.dirname(jslint)):
             os.makedirs(os.path.dirname(jslint))
         f = open(jslint, 'w')
