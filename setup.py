@@ -10,7 +10,7 @@ def read(*rnames):
 
 setup(
     name="pyjslint",
-    version='0.3.4dev',
+    version='0.3.4',
     author="Alejandro Blanco",
     author_email="ablanco@yaco.es",
     description="JSLint wrapper",
@@ -23,7 +23,8 @@ setup(
                  "License :: OSI Approved :: BSD License",
                  "Natural Language :: English",
                  "Programming Language :: JavaScript",
-                 "Programming Language :: Python",
+                 "Programming Language :: Python :: 2"
+                 "Programming Language :: Python :: 3"
                  "Topic :: Software Development :: Quality Assurance"],
     keywords="jslint javascript lint hook qa",
     py_modules=['pyjslint'],
