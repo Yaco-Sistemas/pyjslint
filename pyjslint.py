@@ -5,14 +5,17 @@
 """
 wrapper for JSLint
 """
-
-from optparse import OptionParser
 import os
-import urllib2
 import sys
 import subprocess
+
+from optparse import OptionParser
 from tempfile import NamedTemporaryFile
 
+try:
+    from urllib2 import urlopen  # Python 2
+except ImportError:
+    from urllib.request import urlopen # Python 3
 
 default_jslint_options = r"""
 vars: true,
@@ -73,7 +76,7 @@ def get_lint(options):
 
     if not os.path.exists(jslint) or options.force:
         # download jslint from github
-        response = urllib2.urlopen('https://raw.github.com/douglascrockford/'
+        response = urlopen('https://raw.github.com/douglascrockford/'
                                    'JSLint/master/jslint.js')
         if not os.path.exists(os.path.dirname(jslint)):
             os.makedirs(os.path.dirname(jslint))
@@ -84,7 +87,7 @@ def get_lint(options):
         f.close()
 
     # write node script
-    lint = NamedTemporaryFile()
+    lint = NamedTemporaryFile("w+")
     lint.write(node_script % (jslint[:-3], options.jsoptions))
     lint.file.flush()
     return lint
@@ -96,12 +99,13 @@ def process(jsfile, options):
     output, valid = execute_command(command)
     jsfile.close()
     lint.close()
+    output = output.decode("utf-8")
     return [line for line in output.split("\n") if line], valid == 0
 
 
 # Hooks entry point
 def check_JSLint(code_string):
-    tmpfile = NamedTemporaryFile()
+    tmpfile = NamedTemporaryFile("w+")
     tmpfile.write(code_string)
     tmpfile.file.flush()
     output, valid = process(tmpfile, parser.get_default_values())
@@ -119,7 +123,7 @@ def main():
         sys.exit(False)
     filename = args[0]
     output, valid = process(open(filename, "r"), options)
-    print "\n".join(output)
+    print("\n".join(output))
     sys.exit(valid)
 
 
