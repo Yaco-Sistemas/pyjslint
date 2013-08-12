@@ -5,7 +5,13 @@ JSLint Wrapper
 JSLint wrapper for Python. Can be invoked from the command line and any Python
 code.
 
-It is built on the power of NodeJS.
+It is built on top of the power of NodeJS.
+
+.. image:: https://badge.fury.io/py/pyjslint.png
+   :target: http://pypi.python.org/pypi/pyjslint/
+
+.. image:: https://pypip.in/d/pyjslint/badge.png
+   :target: http://pypi.python.org/pypi/pyjslint/
 
 Dependencies
 ============
